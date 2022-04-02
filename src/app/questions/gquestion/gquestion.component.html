@@ -1,0 +1,13 @@
+<div>
+    How much do you like {{thingToLikeText}}?
+    <hr>
+    <form>
+        <div class="container">
+        <label for="customRange1" class="form-label">{{slider}}</label>
+        <input id="ranger" type="range" (input)="showSlider($event)" class="rangeSlider" min="0" max="100" step="1"
+        style="accent-color: {{color}};"
+        #ranger>
+        </div>
+    </form>
+    <hr>
+</div>

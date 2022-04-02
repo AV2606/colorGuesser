@@ -1,0 +1,40 @@
+<h1>Favorite color guesser.</h1>
+<div class="card" style="width: 25.2rem;" *ngIf="!showQuestions&&!showAnswer">
+  <div class="card-body">
+<h3>Let us guess your favorite color!</h3>
+<button type="button" (click)="showQuestions=true" class="btn btn-info">Lets get started!</button>
+</div>
+</div>
+
+<div class="QuestionsDiv" *ngIf="showQuestions" >
+  <hr>
+    <div class="card text-white bg-danger mb-3" style="max-width: 40rem;">
+    <app-q1 (onCreated)="assignQRed($event)" *ngIf="currentQuestion==Questions.q1"> </app-q1></div>
+    
+    <div class="card text-white bg-primary mb-3" style="max-width: 39rem;">
+    <app-q2 (onCreated)="assignQBlue($event)" *ngIf="currentQuestion==Questions.q2"> </app-q2></div>
+    
+    <div class="card text-white bg-success mb-3" style="max-width: 38rem;">
+    <app-q3 (onCreated)="assignQGreen($event)" *ngIf="currentQuestion==Questions.q3"> </app-q3></div>
+    
+    <div class="card text-white bg-dark mb-3" style="max-width: 37rem;">
+    <app-q4 (onCreated)="assignQBrightness($event)" *ngIf="currentQuestion==Questions.q4"> </app-q4></div>
+    
+    <button (click)="nextQuestion()" class="btn btn-primary">{{nextButtonText}}</button>
+</div>
+<div class="AnswerDiv"
+    *ngIf="showAnswer" >
+    <div class="card bg-light mb-3" style="max-width: 18rem;">
+        <div class="card-header">Thank you for answering the quiz!</div>
+        <div class="card-body" style="background-color: {{getAnswerCardBackColor()}}; color: {{getAnswerCardForeColor()}};" >
+          <h5 class="card-title">from your answers we assume that you'd like this color.</h5>
+          <div class="circle" style='background-color: rgb({{pickedColorService.getColorAsRGBString()}}); color: {{getAnswerCardBackColor()}}'>{{circleText}}</div>
+        </div>
+      </div>
+      <div class="card" style="width: 17rem;">
+        <div class="card-body ">
+          <h4>Think we are wrong?</h4>
+          <button type="button" (click)="showAnswer=false;showQuestions=true;currentQuestion=Questions.q1" class="btn btn-warning">Try again</button>
+        </div>
+      </div>
+</div>
